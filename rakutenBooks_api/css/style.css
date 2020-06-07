@@ -12,7 +12,7 @@ body {
 
 .header {
   width: 100%;
-  background-color: #43cee0;
+  background-color: #000000;
 }
 
 .header__title {
@@ -55,11 +55,11 @@ body {
   border: none;
   font-size: 18px;
   color: #fff;
-  background-color: #43cee0;
+  background-color: #000000;
 }
 
 .search__btn:hover {
-  background-color: #1eabbd;
+  background-color: #ccc;
 }
 
 .lists {
