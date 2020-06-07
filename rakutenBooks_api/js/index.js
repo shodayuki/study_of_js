@@ -10,9 +10,41 @@ $(function () {
   let pageNum = 0;
   let prevWord = '';
 
-  $('.search__btn').on('click', function () {
-    search__btn();
-  });
+  let zeroMessage = function () {
+    $('.lists').after('<div class="comment"></div>');
+    $comment = $('.comment');
+    $comment.html('<p class="message">検索結果が0件でした。<br>キーワードを変えて検索してください。</p>');
+  };
+
+  let failMessage = function() {
+    $('.lists').after('<div class="datacomment"></div>');
+    $datacomment = $('.datacomment');
+    $datacomment.html('<p class="failmessage">データ通信できませんでした。<br>接続を確認してください。</p>');
+  };
+
+  let success = function(data) {
+    if (data.count > 0) {
+      $.each(data.Items, function (i, item) {
+        let list = '';
+        list += '<li class="lists__item">' +
+                  '<div class="lists__item__inner">' +
+                    '<a href="' + item.Item.itemUrl + ' "class="lists__item__link" target="_blank">' +
+                      '<img src="' + item.Item.largeImageUrl + ' "class="lists__item__img" alt="' + item.Item.title + '">' +
+                      '<p class="lists__item__detail">作品名: ' + item.Item.title + '</p>' +
+                      '<p class="lists__item__detail">作者: ' + item.Item.author + '</p>' +
+                      '<p class="lists__item__detail">出版社: ' + item.Item.publisherName + '</p>' +
+                    '</a>' +
+                  '</div>' +
+                '</li>';
+        let contentsList = $('.lists').append(list);
+        if (pageNum > 1) {
+          $('.lists').prepend(contentsList);
+        }
+      });
+    } else if (data.count === 0) {
+      zeroMessage();
+    }
+  };
 
   // ボタンクリックの内容
   let search__btn = function () {
@@ -35,19 +67,16 @@ $(function () {
         hits: '20',
         page: pageNum,
         keyword: searchWord,
-
       }
     })
-      .done(function (data) {
+      .done(function(data) {
         success(data);
-      }).fail(function () {
+      }).fail(function(){
         failMessage();
       })
   };
 
-  let failMessage = function() {
-    $('.lists').after('<div class="datacomment"></div>');
-    $datacomment = $('.datacomment');
-    $datacomment.html('<p class="failmessage">データ通信できませんでした。<br>接続を確認してください。</p>');
-  };
+  $('.search__btn').on('click', function () {
+    search__btn();
+  });
 });
