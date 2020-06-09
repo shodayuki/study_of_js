@@ -12,7 +12,7 @@
   *
 **/
 
-$(function () {
+$(function(){
   let cardNum = [];
   let totalCard = 16;
   let f = false;
@@ -21,37 +21,38 @@ $(function () {
     $card
       .css("pointer-events", "none")
       .text($card.data("num"))
-      .addClass("flipped");
-    if ($(".flipped").length === 2) {
+      .addClass("fliped");
+    if ($(".fliped").length === 2){
       compare();
-    } else {
+    }else{
       f = false
     }
   }
 
   function close($card) {
-    $(".flipped")
+    $(".fliped")
       .css("pointer-events", "")
       .text("?")
-      .removeClass("flipped");
+      .removeClass("fliped");
   }
 
   function compare() {
-    let $firstCard = $(".flipped").eq(0);
-    let $secondCard = $(".flipped").eq(1);
+    let $firstCard = $(".fliped").eq(0);
+    let $secondCard = $(".fliped").eq(1);
+
     let firstNum = $firstCard.data("num");
     let secondNum = $secondCard.data("num");
 
     if (firstNum === secondNum) {
-      $firstCard.add($secondCard).remmoveClass("unopened");
-      $(".flipped").removeClass("flipped");
+      $firstCard.add($secondCard).removeClass("unopened");
+      $(".fliped").removeClass("fliped");
       f = false;
 
       if ($(".unopened").length === 0) {
         alert("Game Clear!!");
       }
     } else {
-      setTimeout(function () {
+      setTimeout(function() {
         close();
         f = false;
       }, 1000);
@@ -72,9 +73,9 @@ $(function () {
       });
   })();
 
-  $(".lists li").on(".click", function () {
+  $(".lists li").on("click", function() {
     if (f) return;
-    f = false;
+    f = true;
     open($(this));
   });
 });
