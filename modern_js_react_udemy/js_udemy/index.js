@@ -26,7 +26,9 @@ const onClickAdd = () => {
     const deleteButton = document.createElement("button");
     deleteButton.innerText = "削除";
     deleteButton.addEventListener("click", () => {
-        console.log("削除");
+        // 削除ボタンの親にあるliタグを未完了リストから削除
+        const deleteTarget = deleteButton.closest("li");
+        document.getElementById("incomplete-list").removeChild(deleteTarget);
     });
 
     div.appendChild(p);
