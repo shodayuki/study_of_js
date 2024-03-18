@@ -6,14 +6,10 @@ export const Todo = () => {
   const [todoText, setTodoText] = useState("");
 
   // 未完了TODOに関するState(incompleteTodosは初期値のState, setIncompleteTodosは更新関数)
-  const [incompleteTodos, setIncompleteTodos] = useState([
-      "TODO1です", "TODO2です"
-  ]);
+  const [incompleteTodos, setIncompleteTodos] = useState([]);
 
   // 完了TODOに関するState（completeTodosは初期値のState, setCompleteTodosは更新関数）
-  const [completeTodos, setCompleteTodos] = useState([
-      "TODO1でした", "TODO2でした"
-  ]);
+  const [completeTodos, setCompleteTodos] = useState([]);
 
   // テキスト変更を検知する関数処理
   const onChangeTodoText = (event) => setTodoText(event.target.value);
@@ -54,6 +50,20 @@ export const Todo = () => {
       setCompleteTodos(newCompleteTodos);
   };
 
+  const onClickBack = (index) => {
+      // 完了TODO配列をコピー
+      const newCompleteTodos = [...completeTodos];
+      // 完了TODO配列から完了ボタンを押下した配列を削除
+      newCompleteTodos.splice(index, 1);
+
+      // 未完了TODO配列をコピーして、完了ボタンを押下した配列を未完了TODO配列に追加
+      const newIncompleteTodos = [...incompleteTodos, completeTodos[index]];
+      // 完了TODOのStateを更新
+      setCompleteTodos(newCompleteTodos);
+      // 未完了TODOのStateを更新
+      setIncompleteTodos(newIncompleteTodos);
+  };
+
   return (
     <>
         <div className="input-area">
@@ -79,12 +89,12 @@ export const Todo = () => {
         <div className="complete-area">
             <p className="title">完了のTODO</p>
             <ul>
-                {completeTodos.map((todo) => {
+                {completeTodos.map((todo, index) => {
                     return (
                         <li key={todo}>
                             <div className="list-row">
                                 <p className="todo-item">{todo}</p>
-                                <button>戻す</button>
+                                <button onClick={() => onClickBack(index)}>戻す</button>
                             </div>
                         </li>
                     );
