@@ -40,6 +40,20 @@ export const Todo = () => {
       setIncompleteTodos(newTodos);
   };
 
+  const onClickComplete = (index) => {
+      // 配列をコピー
+      const newIncompleteTodos = [...incompleteTodos];
+      // 配列の中身を削除
+      newIncompleteTodos.splice(index, 1);
+
+      // 完了TODOの配列をコピーして、完了ボタンを押下した未完了のTODOを配列に追加
+      const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
+      // 未完了TODOのStateを更新
+      setIncompleteTodos(newIncompleteTodos);
+      // 完了TODOのStateを更新
+      setCompleteTodos(newCompleteTodos);
+  };
+
   return (
     <>
         <div className="input-area">
@@ -54,7 +68,7 @@ export const Todo = () => {
                         <li key={todo}>
                             <div className="list-row">
                                 <p className="todo-item">{todo}</p>
-                                <button>完了</button>
+                                <button onClick={() => onClickComplete(index)}>完了</button>
                                 <button onClick={() => onClickDelete(index)}>削除</button>
                             </div>
                         </li>
