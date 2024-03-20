@@ -1,6 +1,6 @@
 import React from "react";
 
-class ImageCard = (props) => {
+const ImageCard = (props) => {
     const [spans, setSpans] = React.useState(0);
     const imageRef = React.useRef(null);
 
