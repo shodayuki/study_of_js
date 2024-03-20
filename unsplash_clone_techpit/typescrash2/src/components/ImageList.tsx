@@ -15,7 +15,7 @@ const ImageList: React.FC<Props> = (props: Props) => {
     return <ImageCard key={image.id} image={image} />;
    });
 
-   const handleScroll = (e) => {
+   const handleScroll = (e: any) => {
      const element = e.target;
      const { scrollHeight, scrollTop, clientHeight } = element;
         if (scrollHeight - scrollTop === clientHeight) {

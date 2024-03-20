@@ -14,15 +14,19 @@ type Props = {
 const ImageCard: React.FC<Props> = (props) => {
   const [modalShow, setModalShow] = React.useState(false);
   const [spans, setSpans] = React.useState(0);
-  const imageRef = React.useRef(null);
+  const imageRef = React.useRef<HTMLImageElement>(null);
 
   const calculateSpans = () => {
-    const height = imageRef.current.clientHeight;
-    setSpans(Math.ceil(height / 10));
+    if (null !== imageRef.current) {
+        const height = imageRef.current.clientHeight;
+        setSpans(Math.ceil(height / 10));
+    }
   };
 
   React.useEffect(() => {
-    imageRef.current.addEventListener('load', calculateSpans);
+    if (null !== imageRef.current) {
+        imageRef.current.addEventListener('load', calculateSpans);
+    }
   });
 
   const { description, urls } = props.image;
