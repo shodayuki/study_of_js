@@ -40,6 +40,7 @@ const ImageCard: React.FC<Props> = (props) => {
         image={props.image}
         show={modalShow}
         onHide={() => setModalShow(false)}
+        size={"lg"}
       />
     </>
   );
