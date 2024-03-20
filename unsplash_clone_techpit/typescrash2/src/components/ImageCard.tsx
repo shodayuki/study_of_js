@@ -1,7 +1,17 @@
 import React from 'react';
 import ImageModal from './ImageModal';
 
-const ImageCard = (props) => {
+export type ImageCardProps = {
+    id: number;
+    description: string;
+    urls: { regular: string };
+};
+
+type Props = {
+    image: ImageCardProps;
+};
+
+const ImageCard: React.FC<Props> = (props) => {
   const [modalShow, setModalShow] = React.useState(false);
   const [spans, setSpans] = React.useState(0);
   const imageRef = React.useRef(null);
