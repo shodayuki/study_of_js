@@ -2,7 +2,15 @@ import './ImageList.css';
 import React from 'react';
 import ImageCard from './ImageCard';
 
-const ImageList = (props) => {
+type Props = {
+    images: [];
+    term: string;
+    page: number;
+    setPage: (page: number) => void;
+    onSearchSubmit: (term: string, page: number) => void;
+}
+
+const ImageList: React.FC<Props> = (props: Props) => {
   const images = props.images.map((image) => {
     return <ImageCard key={image.id} image={image} />;
    });
