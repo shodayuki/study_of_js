@@ -1,10 +1,10 @@
 .Header {
     width: 100px;
     height: 54px;
+    display: flex;
 }
 
-.header__Logo {
-    float: left;
+.Header__Logo {
     margin: 5px 60px 0;
     font-size: 30px;
 }
