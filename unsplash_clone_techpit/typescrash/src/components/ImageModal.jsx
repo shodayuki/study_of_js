@@ -8,9 +8,9 @@ const ImageModal = (props) => {
             {...props}
             centered
         >
-            <Modal.Body>
+            <ModalBody>
                 <img className="ImageSize" src={props.image.urls.regular} alt={props.image.description} />
-            </Modal.Body>
+            </ModalBody>
         </Modal>
     );
 };
