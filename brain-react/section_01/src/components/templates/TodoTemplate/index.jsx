@@ -35,7 +35,10 @@ export const TodoTemplate = () => {
             // filterを用いた方法
             const newTodoList = originTodoList.filter((todo) => todo.id !== targetId);
 
-            console.log(newTodoList);
+            // 削除するTodoの配列番号を取り出してspliceで削除
+            // const newTodoList = [...todoList];
+            // const deleteIndex = newTodoList.findIndex((todo) => todo.id === targetId);
+            // newTodoList.splice(deleteIndex, 1);
 
             // todoを削除したTodoListの更新
             setOriginTodoList(newTodoList);
