@@ -1,4 +1,5 @@
-import {useState} from "react";
+import { useState } from "react";
+import { InputForm } from "../../atoms/InputForm";
 import { AddTodo } from "../../organisms/AddTodo";
 import { searchTodo } from "../../../utils/todoLogic";
 import { TodoList } from "../../organisms/TodoList";
@@ -12,6 +13,8 @@ export const TodoTemplate = () => {
     const [addInputValue, setAddInputValue] = useState("");
     /* Todo採番ID */
     const [uniqueId, setUniqueId] = useState(INIT_UNIQUE_ID);
+    /* 検索キーワード */
+    const [searchKeyword, setSearchKeyword] = useState("");
     /* 表示用TodoList */
     const [showTodoList, setShowTodoList] = useState(INIT_TODO_LIST);
 
@@ -86,6 +89,18 @@ export const TodoTemplate = () => {
         }
     };
 
+    /**
+     * Todo検索処理
+     *
+     * @param {*} e
+     */
+    const handleSearchTodo = (e) => {
+        const keyword = e.target.value;
+        setSearchKeyword(keyword);
+
+        updateShowTodoList(originTodoList, keyword);
+    };
+
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>Todo List</h1>
@@ -99,7 +114,11 @@ export const TodoTemplate = () => {
             </section>
             {/* Todo検索フォームエリア */}
             <section className={styles.common}>
-
+                <InputForm
+                    inputValue={searchKeyword}
+                    placeholder={"Search Keyword"}
+                    handleChangeValue={handleSearchTodo}
+                />
             </section>
             {/* Todoリスト一覧表示 */}
             <section className={styles.common}>
