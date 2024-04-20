@@ -56,7 +56,7 @@ export const TodoTemplate = () => {
                 },
             ];
             setOriginTodoList(newTodoList);
-            updateShowTodoList(newTodoList, "");
+            updateShowTodoList(newTodoList, searchKeyword);
 
             // 採番IDを更新
             setUniqueId(nextUniqueId);
@@ -85,7 +85,7 @@ export const TodoTemplate = () => {
             // todoを削除したTodoListの更新
             setOriginTodoList(newTodoList);
 
-            updateShowTodoList(newTodoList, "");
+            updateShowTodoList(newTodoList, searchKeyword);
         }
     };
 
