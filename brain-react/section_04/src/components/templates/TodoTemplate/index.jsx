@@ -1,19 +1,19 @@
 import { TodoList } from "../../organisms/TodoList";
 import { AddTodo } from "../../organisms/AddTodo";
 import { InputForm } from "../../atoms/InputForm";
-import { useTodo } from "../../../hooks/useTodo";
+import { useTodoContext } from "../../../contexts/TodoContext";
 import styles from "./styles.module.css";
 
 export const TodoTemplate = () => {
-    const [
-        { addInputValue, searchKeyword, showTodoList },
-        {
-            onChangeAddInputValue,
-            handleAddTodo,
-            handleDeleteTodo,
-            handleSearchTodo,
-        },
-    ] = useTodo();
+    const {
+        addInputValue,
+        searchKeyword,
+        showTodoList,
+        onChangeAddInputValue,
+        handleAddTodo,
+        handleDeleteTodo,
+        handleSearchTodo,
+    } = useTodoContext();
 
     return (
         <div className={styles.container}>

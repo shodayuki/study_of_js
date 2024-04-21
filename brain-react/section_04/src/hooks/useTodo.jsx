@@ -98,18 +98,13 @@ export const useTodo = () => {
         updateShowTodoList(originTodoList, keyword);
     }
 
-    const states = {
+    return  {
         addInputValue,
         searchKeyword,
         showTodoList,
-    };
-
-    const actions = {
         onChangeAddInputValue,
         handleAddTodo,
         handleDeleteTodo,
         handleSearchTodo,
     };
-
-    return [states, actions];
 };
