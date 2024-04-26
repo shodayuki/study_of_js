@@ -2,16 +2,30 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {TodoPage} from "./pages/todo";
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import {NAVIGATION_LIST} from "./constants/navigations";
-import {TodoProvider} from "./contexts/TodoContext";
+import { TodoPage } from "./pages/todo";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { NAVIGATION_LIST } from "./constants/navigations";
+import { TodoProvider } from "./contexts/TodoContext";
+import { TodoDetailPage } from "./pages/detail";
+import { TodoCreatePage } from "./pages/create";
 
 const router = createBrowserRouter([
     {
         path: NAVIGATION_LIST.TOP,
         element: <TodoPage />,
     },
+    {
+        path: NAVIGATION_LIST.EDIT,
+        element: <TodoDetailPage />,
+    },
+    {
+        path: NAVIGATION_LIST.CREATE,
+        element: <TodoCreatePage />,
+    },
+    {
+        path: NAVIGATION_LIST.DETAIL,
+        element: <TodoDetailPage />,
+    }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
