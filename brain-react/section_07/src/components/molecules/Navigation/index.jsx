@@ -3,7 +3,7 @@
  *
  * @package components
  */
-import { Link } from "react-router-dom";
+import { NavigationLink } from "../../atoms/NavigationLink";
 import { NAVIGATION_LIST } from "../../../constants/navigations";
 import styles from "./styles.module.css";
 
@@ -16,12 +16,8 @@ import styles from "./styles.module.css";
 export const Navigation = () => (
     <nav>
         <ul className={styles.ul}>
-            <li className={styles.li}>
-                <Link to={NAVIGATION_LIST.TOP}>Top</Link>
-            </li>
-            <li className={styles.li}>
-                <Link to={NAVIGATION_LIST.CREATE}>Create</Link>
-            </li>
+            <NavigationLink title={"Top"} linkPath={NAVIGATION_LIST.TOP} />
+            <NavigationLink title={"Create"} linkPath={NAVIGATION_LIST.CREATE} />
         </ul>
     </nav>
 );
