@@ -1,6 +1,6 @@
+import { Navigation } from "../../organisims/Navigation";
 import { TodoList } from "../../organisims/TodoList";
 import { InputForm } from "../../atoms/InputForm";
-import { AddTodo } from "../../organisims/AddTodo";
 import { useTodoContext } from "../../../contexts/TodoContext";
 import styles from "./style.module.css";
 
@@ -20,11 +20,7 @@ export const TodoTemplate = () => {
             <h1 className={styles.title}>Todo List</h1>
             {/* Todo追加エリア */}
             <section className={styles.common}>
-                <AddTodo
-                    addInputValue={addInputValue}
-                    onChangeTodo={onChangeAddInputValue}
-                    handleAddTodo={handleAddTodo}
-                />
+                <Navigation />
             </section>
             {/* Todo検索フォームエリア */}
             <section className={styles.common}>
