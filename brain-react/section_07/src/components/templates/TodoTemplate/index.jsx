@@ -1,19 +1,41 @@
+/**
+ * TodoTemplate
+ *
+ * @package components
+ */
+import { useMemo, useState } from "react";
 import { BaseLayout } from "../../organisims/BaseLayout";
 import { TodoList } from "../../organisims/TodoList";
 import { InputForm } from "../../atoms/InputForm";
 import { useTodoContext } from "../../../contexts/TodoContext";
 import styles from "./style.module.css";
 
+/**
+ * TodoTemplate
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export const TodoTemplate = () => {
-    const {
-        addInputValue,
-        searchKeyword,
-        showTodoList,
-        onChangeAddInputValue,
-        handleAddTodo,
-        handleDeleteTodo,
-        handleSearchTodo
-    } = useTodoContext();
+    const { originTodoList, deleteTodo } = useTodoContext();
+
+    /* 検索キーワード */
+    const [searchKeyword, setSearchKeyword] = useState("");
+
+    /* 表示用TodoList */
+    const showTodoList = useMemo(() => {
+        const regexp = new RegExp("^" + searchKeyword, "i");
+        return originTodoList.filter((todo) => {
+            return todo.title.match(regexp);
+        });
+    }, [originTodoList, searchKeyword]);
+
+    /**
+     * 検索キーワード更新処理
+     *
+     * @param {*} e
+     */
+    const handleChangeSearchKeyword = (e) => setSearchKeyword(e.target.value);
 
     return (
         <BaseLayout title={"TodoList"}>
@@ -23,7 +45,7 @@ export const TodoTemplate = () => {
                     <InputForm
                         inputValue={searchKeyword}
                         placeholder={"Search Keyword"}
-                        handleChangeValue={handleSearchTodo}
+                        onChange={handleChangeSearchKeyword}
                     />
                 </div>
                 {/* Todoリスト一覧表示 */}
@@ -31,7 +53,7 @@ export const TodoTemplate = () => {
                     {showTodoList.length > 0 && (
                         <TodoList
                             todoList={showTodoList}
-                            handleDeleteTodo={handleDeleteTodo}
+                            handleDeleteTodo={deleteTodo}
                         />
                     )}
                 </div>
