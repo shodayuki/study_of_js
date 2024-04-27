@@ -1,7 +1,7 @@
 /**
  * useTodoCreateTemplate
  *
- * @package components
+ * @package hooks
  */
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
