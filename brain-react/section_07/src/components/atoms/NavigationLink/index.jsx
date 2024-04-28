@@ -12,12 +12,8 @@ import styles from "./styles.module.css";
  * @returns {JSX.Element}
  * @constructor
  */
-export const NavigationLink = (props) => {
-    const { title, linkPath } = props;
-
-    return (
-        <li className={styles.li}>
-            <Link to={linkPath}>{title}</Link>
-        </li>
-    );
-};
+export const NavigationLink = ({ title, linkPath }) => (
+    <li className={styles.li}>
+        <Link to={linkPath}>{title}</Link>
+    </li>
+);
