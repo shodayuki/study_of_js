@@ -22,6 +22,7 @@ export const TodoProvider = ({ children }) => {
     const {
         originTodoList,
         addTodo,
+        updateTodo,
         deleteTodo
     } = useTodo();
 
@@ -30,6 +31,7 @@ export const TodoProvider = ({ children }) => {
             value={{
                 originTodoList,
                 addTodo,
+                updateTodo,
                 deleteTodo
             }}
         >

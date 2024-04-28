@@ -3,5 +3,12 @@
  *
  * @package pages
  */
+import { TodoEditTemplate } from "../components/templates/TodoEditTemplate";
 
-export const TodoEditPage = () => <div>編集</div>;
+/**
+ * TodoEditPage
+ *
+ * @returns {JSX.Element}
+ * @constructor
+ */
+export const TodoEditPage = () => <TodoEditTemplate />;

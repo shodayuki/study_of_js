@@ -46,25 +46,54 @@ export const useTodo = () => {
     );
 
     /**
+     * Todo更新処理
+     *
+     * @param {*} id
+     * @param {*} title
+     * @param {*} content
+     * @type {(function(*, *, *): void)|*}
+     */
+    const updateTodo = useCallback(
+        (id, title, content) => {
+            const updatedTodoList = originTodoList.map((todo) => {
+                if (id === todo.id) {
+                    return {
+                        id: todo.id,
+                        title: title,
+                        content: content,
+                    };
+                }
+                return todo;
+            });
+            setOriginTodoList(updatedTodoList);
+        },
+        [originTodoList]
+    );
+
+    /**
      * Todo削除処理
      *
      * @param { number } targetId
      * @param { string } targetTitle
      */
-    const deleteTodo = (targetId, targetTitle) => {
-        if (window.confirm(`「${targetTitle}」のtodoを削除しますか？`)) {
-            const newTodoList = [...originTodoList];
-            const deleteIndex = newTodoList.findIndex((todo) => todo.id === targetId);
-            newTodoList.splice(deleteIndex, 1);
+    const deleteTodo = useCallback(
+        (targetId, targetTitle) => {
+            if (window.confirm(`「${targetTitle}」のtodoを削除しますか？`)) {
+                const newTodoList = [...originTodoList];
+                const deleteIndex = newTodoList.findIndex((todo) => todo.id === targetId);
+                newTodoList.splice(deleteIndex, 1);
 
-            // todoを削除したTodoListの更新
-            setOriginTodoList(newTodoList);
-        }
-    }
+                // todoを削除したTodoListの更新
+                setOriginTodoList(newTodoList);
+            }
+        },
+        [originTodoList]
+    );
 
     return {
         originTodoList,
         addTodo,
+        updateTodo,
         deleteTodo
     };
 };
