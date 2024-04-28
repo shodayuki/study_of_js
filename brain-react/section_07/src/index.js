@@ -8,6 +8,7 @@ import { NAVIGATION_LIST } from "./constants/navigations";
 import { TodoProvider } from "./contexts/TodoContext";
 import { TodoDetailPage } from "./pages/detail";
 import { TodoCreatePage } from "./pages/create";
+import {TodoEditPage} from "./pages/edit";
 
 const router = createBrowserRouter([
     {
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
     },
     {
         path: NAVIGATION_LIST.EDIT,
-        element: <TodoDetailPage />,
+        element: <TodoEditPage />,
     },
     {
         path: NAVIGATION_LIST.CREATE,
