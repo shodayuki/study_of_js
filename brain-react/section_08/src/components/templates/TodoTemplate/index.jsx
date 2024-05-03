@@ -3,11 +3,12 @@
  *
  * @package components
  */
-import React, { useMemo, useState } from 'react';
+import React from 'react';
 import { BaseLayout } from '../../organisims/BaseLayout';
 import { TodoList } from "../../organisims/TodoList";
 import { InputForm } from '../../atoms/InputForm';
 import { useTodoContext } from '../../../contexts/TodoContext';
+import { useTodoTemplate } from './useTodoTemplate';
 import styles from "./style.module.css";
 
 /**
@@ -19,19 +20,10 @@ import styles from "./style.module.css";
 export const TodoTemplate = () => {
   const { originTodoList, deleteTodo } = useTodoContext();
 
-  /* 検索キーワード */
-  const [searchKeyword, setSearchKeyword] = useState("");
-
-  /* 表示用TodoList */
-  const showTodoList = useMemo(() => {
-    const regexp = new RegExp("^" + searchKeyword, "i");
-
-    return originTodoList.filter((todo) => {
-      return todo.title.match(regexp);
-    });
-  }, [originTodoList, searchKeyword]);
-
-  const handleChangeSearchKeyword = (e) => setSearchKeyword(e.target.value);
+  const [
+    { searchKeyword, showTodoList },
+    { handleChangeSearchKeyword }
+  ] = useTodoTemplate({ originTodoList })
 
   return (
     <BaseLayout title={"TodoList"}>
