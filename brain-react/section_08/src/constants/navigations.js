@@ -17,7 +17,7 @@ export const BASE_URL = "";
  * @type {{TOP: string, CREATE: string, EDIT: string, DETAIL: string}}
  */
 export const NAVIGATION_LIST = {
-  TOP: `${BASE_URL}`,
+  TOP: `${BASE_URL}/`,
   DETAIL: `${BASE_URL}/detail/:id`,
   CREATE: `${BASE_URL}/create`,
   EDIT: `${BASE_URL}/edit/:id`,
