@@ -4,4 +4,12 @@
  * @package pages
  */
 import React from 'react';
-export const TodoCreatePage = () => <div>作成</div>;
+import { TodoCreateTemplate } from '../components/templates/TodoCreateTemplate';
+
+/**
+ * TodoCreatePage
+ *
+ * @returns {React.JSX.Element}
+ * @constructor
+ */
+export const TodoCreatePage = () => <TodoCreateTemplate />;
