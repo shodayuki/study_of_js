@@ -1,0 +1,23 @@
+.ul {
+    width: 100%;
+    padding-left: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.li {
+    text-align: center;
+    list-style-type: none;
+}
+
+.li > a {
+    display: block;
+    background-color: #ff9900;
+    text-decoration: none;
+    color: #FFF;
+    font-size: 24px;
+    font-weight: bold;
+    width: 80px;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
