@@ -15,15 +15,13 @@ import styles from "./styles.module.css";
  * @returns {JSX.Element}
  * @constructor
  */
-export const BaseLayout = ({ children, title }) => {
-  return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>{title}</h1>
-      {/* リンクエリア */}
-      <section className={styles.common}>
-        <Navigation />
-      </section>
-      {children}
-    </div>
-  );
-};
+export const BaseLayout = ({ children, title }) => (
+  <div className={styles.container}>
+    <h1 className={styles.title}>{title}</h1>
+    {/* リンクエリア */}
+    <section className={styles.common}>
+      <Navigation />
+    </section>
+    {children}
+  </div>
+);
