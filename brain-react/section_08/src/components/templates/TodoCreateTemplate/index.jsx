@@ -33,7 +33,7 @@ export const TodoCreateTemplate = () => {
    * @type {function(*): void}
    */
   const handleChangeTitle = useCallback(
-    (e) => setInputTitle(e.target.title), []
+    (e) => setInputTitle(e.target.value), []
   );
 
   /**
@@ -42,7 +42,7 @@ export const TodoCreateTemplate = () => {
    * @type {function(*): void}
    */
   const handleChangeContent = useCallback(
-    (e) => setInputContent(e.target.content), []
+    (e) => setInputContent(e.target.value), []
   );
 
   /**
