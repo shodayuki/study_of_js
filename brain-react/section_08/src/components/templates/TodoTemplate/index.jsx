@@ -1,5 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { TodoList } from "../../organisims/TodoList";
+import { InputForm } from '../../atoms/InputForm';
+import { searchTodo } from '../../../utils/todoLogic';
 import { INIT_TODO_LIST } from "../../../constants/data";
 import styles from "./style.module.css";
 
@@ -10,14 +12,21 @@ export const TodoTemplate = () => {
   /* 表示用TodoList */
   const [showTodoList, setShowTodoList] = useState(INIT_TODO_LIST);
 
+  /* 検索キーワード */
+  const [searchKeyword, setSearchKeyword] = useState("");
+
   /* actions */
   /**
    * 表示用Todoリスト更新処理
    *
    * @param {*} newTodoList
+   * @param {*} keyword
    */
-  const updateShowTodoList = (newTodoList) => {
-    setShowTodoList(newTodoList);
+  const updateShowTodoList = (newTodoList, keyword) => {
+    setShowTodoList(
+      // eslint-disable-next-line
+      keyword != "" ? searchTodo(newTodoList, keyword) : newTodoList
+    );
   }
 
   /**
@@ -35,8 +44,20 @@ export const TodoTemplate = () => {
       // Todoを削除したTodoListの更新
       setOriginTodoList(newTodoList);
 
-      updateShowTodoList(newTodoList);
+      updateShowTodoList(newTodoList, "");
     }
+  }
+
+  /**
+   * Todo検索処理
+   *
+   * @param {*} e
+   */
+  const handleSearchTodo = (e) => {
+    const keyword = e.target.value;
+    setSearchKeyword(keyword);
+
+    updateShowTodoList(originTodoList, keyword);
   }
 
   return (
@@ -45,7 +66,13 @@ export const TodoTemplate = () => {
       {/* Todo追加エリア */}
       <section className={styles.common}></section>
       {/* Todo検索フォームエリア */}
-      <section className={styles.common}></section>
+      <section className={styles.common}>
+        <InputForm
+          inputValue={searchKeyword}
+          placeholder={"Search Keyword"}
+          handleChangeValue={handleSearchTodo}
+        />
+      </section>
       {/* Todoリスト一覧表示 */}
       <section className={styles.common}>
         {showTodoList.length > 0 && (
