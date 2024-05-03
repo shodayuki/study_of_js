@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigation } from '../../organisims/Navigation';
+import { Navigation } from '../../molecules/Navigation';
 import { TodoList } from "../../organisims/TodoList";
 import { InputForm } from '../../atoms/InputForm';
 import { useTodoContext } from '../../../contexts/TodoContext';
