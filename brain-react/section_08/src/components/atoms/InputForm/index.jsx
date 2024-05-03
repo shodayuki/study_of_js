@@ -14,7 +14,7 @@ import styles from "./style.module.css";
  */
 export const InputForm = (props) => {
   /* props */
-  const { inputValue, placeholder, handleChangeValue, handleKeyDown } = props;
+  const { inputValue, placeholder, onChange, onKeyDown } = props;
 
   return (
     <input
@@ -22,8 +22,8 @@ export const InputForm = (props) => {
       type="text"
       placeholder={placeholder}
       value={inputValue}
-      onChange={handleChangeValue}
-      onKeyDown={handleKeyDown}
+      onChange={onChange}
+      onKeyDown={onKeyDown}
     />
   );
 }
