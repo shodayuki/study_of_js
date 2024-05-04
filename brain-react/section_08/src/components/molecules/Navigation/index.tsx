@@ -3,18 +3,18 @@
  *
  * @package components
  */
-import React from 'react';
+import { FC } from 'react';
 import { NavigationLink } from '../../atoms/NavigationLink';
 import { NAVIGATION_PATH } from '../../../constants/navigations';
+// @ts-ignore
 import styles from './styles.module.css';
 
 /**
  * Navigation
  *
- * @returns {JSX.Element}
  * @constructor
  */
-export const Navigation = () => (
+export const Navigation: FC = () => (
   <nav>
     <ul className={styles.ul}>
       <NavigationLink title={"Top"} linkPath={NAVIGATION_PATH.TOP} />
