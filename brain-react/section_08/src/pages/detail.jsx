@@ -4,4 +4,6 @@
  * @package pages
  */
 import React from 'react';
-export const TodoDetailPage = () => <div>詳細</div>;
+import { TodoDetailTemplate } from '../components/templates/TodoDetailTemplate';
+
+export const TodoDetailPage = () => <TodoDetailTemplate />;
