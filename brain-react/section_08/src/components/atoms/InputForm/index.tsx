@@ -4,7 +4,8 @@
  * @package components
  */
 import { FC } from 'react';
-import styles from "./style.module.css";
+// @ts-ignore
+import styles from "./styles.module.css";
 
 type Props = JSX.IntrinsicElements['input']
 

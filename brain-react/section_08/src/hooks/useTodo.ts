@@ -20,10 +20,10 @@ export const useTodo = () => {
   /**
    * Todo新規登録処理
    *
-   * @param {*} title
-   * @parma {*} content
+   * @param {string} title
+   * @param {string} content
    */
-  const addTodo = useCallback((title, content) => {
+  const addTodo = useCallback((title: string, content: string) => {
     const nextUniqueId = uniqueId + 1;
 
     // Todo追加処理
@@ -46,12 +46,12 @@ export const useTodo = () => {
   /**
    * Todo更新処理
    *
-   * @param {*} id
-   * @param {*} title
-   * @param {*} content
+   * @param {number} id
+   * @param {string} title
+   * @param {string} content
    * @type {(function(*, *, *): void)|*}
    */
-  const updateTodo = useCallback((id, title, content) => {
+  const updateTodo = useCallback((id: number, title: string, content: string) => {
     const updatedTodoList = originTodoList.map((todo) => {
       if (id === todo.id) {
         return {
@@ -71,7 +71,7 @@ export const useTodo = () => {
    * @param { number } targetId
    * @param { string } targetTitle
    */
-  const deleteTodo = useCallback((targetId, targetTitle) => {
+  const deleteTodo = useCallback((targetId: number, targetTitle: string) => {
     if (window.confirm(`「${targetTitle}」のTodoを削除しますか？`)) {
       const newTodoList = [...originTodoList];
       const deleteIndex = newTodoList.findIndex((todo) => todo.id === targetId);

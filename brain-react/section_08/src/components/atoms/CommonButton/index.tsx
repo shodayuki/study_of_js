@@ -4,6 +4,7 @@
  * @package components
  */
 import { FC } from 'react';
+// @ts-ignore
 import styles from './styles.module.css';
 
 type Props = JSX.IntrinsicElements['button']
