@@ -31,7 +31,7 @@ export const TodoTemplate = () => {
         {/* Todo検索フォームエリア */}
         <div className={styles.area}>
           <InputForm
-            inputValue={searchKeyword}
+            value={searchKeyword}
             placeholder={"Search Keyword"}
             onChange={handleChangeSearchKeyword}
           />

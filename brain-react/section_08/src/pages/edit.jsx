@@ -4,4 +4,12 @@
  * @package pages
  */
 import React from 'react';
-export const TodoEditPage = () => <div>編集</div>;
+import { TodoEditTemplate } from '../components/templates/TodoEditTemplate';
+
+/**
+ * TodoEditPage
+ *
+ * @returns {React.JSX.Element}
+ * @constructor
+ */
+export const TodoEditPage = () => <TodoEditTemplate />;
