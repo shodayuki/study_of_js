@@ -3,11 +3,12 @@
  *
  * @package constants
  */
+import { TodoType } from '../interfaces/Todo';
 
 /**
  * Todoリストの初期値
  */
-export const INIT_TODO_LIST = [
+export const INIT_TODO_LIST: Array<TodoType> = [
   {
     id: 1,
     title: "Todo1",
