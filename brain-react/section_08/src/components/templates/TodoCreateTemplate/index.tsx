@@ -3,13 +3,13 @@
  *
  * @package components
  */
-import React from 'react';
 import { BaseLayout } from '../../organisims/BaseLayout';
 import { InputForm } from '../../atoms/InputForm';
 import { TextArea } from '../../atoms/TextArea';
 import { CommonButton } from '../../atoms/CommonButton';
 import { useTodoContext } from '../../../contexts/TodoContext';
 import { useTopCreateTemplate } from './useTopCreateTemplate';
+// @ts-ignore
 import styles from './styles.module.css';
 
 /**
@@ -19,6 +19,7 @@ import styles from './styles.module.css';
  * @constructor
  */
 export const TodoCreateTemplate = () => {
+  // @ts-ignore
   const { addTodo } = useTodoContext();
 
   const [
@@ -46,7 +47,7 @@ export const TodoCreateTemplate = () => {
         <div className={styles.area}>
           <CommonButton
             type="submit"
-            label="Create Todo"
+            title="Create Todo"
           />
         </div>
       </form>

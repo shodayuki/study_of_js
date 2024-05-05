@@ -6,13 +6,29 @@
 import { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NAVIGATION_PATH } from '../../../constants/navigations';
+import { EventType } from '../../../interfaces/Event';
+
+type Param = {
+  addTodo: (title: string, content: string) => void
+}
+
+type StateType = {
+  inputTitle: string,
+  inputContent: string
+}
+
+type ActionsType = {
+  handleChangeTitle: EventType['onChangeInput'],
+  handleChangeContent: EventType['onChangeTextArea'],
+  handleCreateTodo: EventType['onSubmit']
+}
 
 /**
  * useTodoCreateTemplate
  *
  * @param addTodo
  */
-export const useTopCreateTemplate = ({ addTodo }) => {
+export const useTopCreateTemplate = ({ addTodo }: Param) => {
   const navigate = useNavigate();
 
   /* local state */
@@ -24,7 +40,7 @@ export const useTopCreateTemplate = ({ addTodo }) => {
    *
    * @type {function(*): void}
    */
-  const handleChangeTitle = useCallback(
+  const handleChangeTitle: EventType['onChangeInput'] = useCallback(
     (e) => setInputTitle(e.target.value), []
   );
 
@@ -33,7 +49,7 @@ export const useTopCreateTemplate = ({ addTodo }) => {
    *
    * @type {function(*): void}
    */
-  const handleChangeContent = useCallback(
+  const handleChangeContent: EventType['onChangeTextArea'] = useCallback(
     (e) => setInputContent(e.target.value), []
   );
 
@@ -42,7 +58,7 @@ export const useTopCreateTemplate = ({ addTodo }) => {
    *
    * @type {(function(*): void)|*}
    */
-  const handleCreateTodo = useCallback(
+  const handleCreateTodo: EventType['onSubmit'] = useCallback(
     (e) => {
       e.preventDefault();
       if (inputTitle !== "" && inputContent !== "") {
@@ -64,5 +80,5 @@ export const useTopCreateTemplate = ({ addTodo }) => {
     handleCreateTodo
   };
 
-  return [states, actions];
+  return [states, actions] as const;
 };
