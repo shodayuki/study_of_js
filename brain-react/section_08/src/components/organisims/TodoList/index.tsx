@@ -11,7 +11,7 @@ import { useTodoList } from './useTodoList';
 
 /* styles */
 // @ts-ignore
-import styles from "./style.module.css";
+import styles from "./styles.module.css";
 
 type Props = {
   todoList: Array<TodoType>
