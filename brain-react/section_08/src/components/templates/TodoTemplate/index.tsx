@@ -3,12 +3,12 @@
  *
  * @package components
  */
-import React from 'react';
 import { BaseLayout } from '../../organisims/BaseLayout';
 import { TodoList } from "../../organisims/TodoList";
 import { InputForm } from '../../atoms/InputForm';
 import { useTodoContext } from '../../../contexts/TodoContext';
 import { useTodoTemplate } from './useTodoTemplate';
+// @ts-ignore
 import styles from "./style.module.css";
 
 /**
