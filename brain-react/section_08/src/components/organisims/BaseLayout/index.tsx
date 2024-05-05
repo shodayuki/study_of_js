@@ -3,9 +3,15 @@
  *
  * @package components
  */
-import React from 'react';
+import { FC, ReactNode } from 'react';
 import { Navigation } from '../../molecules/Navigation';
+// @ts-ignore
 import styles from "./styles.module.css";
+
+type Props = {
+  children: ReactNode,
+  title: string
+}
 
 /**
  * BaseLayout
@@ -15,7 +21,7 @@ import styles from "./styles.module.css";
  * @returns {JSX.Element}
  * @constructor
  */
-export const BaseLayout = ({ children, title }) => (
+export const BaseLayout: FC<Props> = ({ children, title }) => (
   <div className={styles.container}>
     <section className={styles.common}>
       <Navigation />

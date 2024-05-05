@@ -1,16 +1,22 @@
 /* TodoList */
-import React, { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FC } from 'react';
 import {
   faTrashAlt,
   faFile,
   faPenToSquare
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { NAVIGATION_PATH } from '../../../constants/navigations';
+import { TodoType } from '../../../interfaces/Todo';
+import { useTodoList } from './useTodoList';
 
 /* styles */
-import styles from "./style.module.css";
+// @ts-ignore
+import styles from "./styles.module.css";
+
+type Props = {
+  todoList: Array<TodoType>
+  handleDeleteTodo: (targetId: number, targetTitle: string) => void
+}
 
 /**
  * TodoList
@@ -18,30 +24,8 @@ import styles from "./style.module.css";
  * @param {*} props
  * @returns
  */
-export const TodoList = ({ todoList, handleDeleteTodo }) => {
-  const navigate = useNavigate();
-
-  /**
-   * 詳細ページに遷移する処理
-   *
-   * @param {*} id
-   * @type {function(*): void}
-   */
-  const handleMoveDetailPage = useCallback(
-    (id) => navigate(`${NAVIGATION_PATH.DETAIL}${id}`),
-    [navigate]
-  );
-
-  /**
-   * 編集ページに遷移する処理
-   *
-   * @param {*} id
-   * @type {function(*): void}
-   */
-  const handleMoveEditPage = useCallback(
-    (id) => navigate(`${NAVIGATION_PATH.EDIT}${id}`),
-    [navigate]
-  );
+export const TodoList: FC<Props> = ({ todoList, handleDeleteTodo }) => {
+  const [{ handleMoveDetailPage, handleMoveEditPage }] = useTodoList();
 
   return (
     <ul className={styles.list}>

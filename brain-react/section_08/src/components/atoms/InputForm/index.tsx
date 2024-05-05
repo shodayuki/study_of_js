@@ -3,16 +3,23 @@
  *
  * @package components
  */
-import React from 'react';
-import styles from "./style.module.css";
+import { FC } from 'react';
+// @ts-ignore
+import styles from "./styles.module.css";
+
+type Props = JSX.IntrinsicElements['input']
 
 /**
  * InputForm
  *
- * @param {*} props
- * @returns
+ * @param disabled
+ * @param value
+ * @param placeholder
+ * @param onChange
+ * @param onKeyDown
+ * @constructor
  */
-export const InputForm = ({
+export const InputForm: FC<Props> = ({
   disabled = false,
   value,
   placeholder,

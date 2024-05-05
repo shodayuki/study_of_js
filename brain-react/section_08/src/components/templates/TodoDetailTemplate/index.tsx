@@ -8,6 +8,7 @@ import { useTodoContext } from '../../../contexts/TodoContext';
 import { BaseLayout } from '../../organisims/BaseLayout';
 import { InputForm } from '../../atoms/InputForm';
 import { TextArea } from '../../atoms/TextArea';
+// @ts-ignore
 import styles from './styles.module.css';
 
 /**

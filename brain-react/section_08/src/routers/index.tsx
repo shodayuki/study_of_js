@@ -3,7 +3,6 @@
  *
  * @package routers
  */
-import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { NAVIGATION_LIST } from '../constants/navigations';
 import { TodoPage } from '../pages/todo';
