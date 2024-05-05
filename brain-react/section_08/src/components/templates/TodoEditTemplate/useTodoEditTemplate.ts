@@ -73,13 +73,13 @@ export const useTodoEditTemplate = ({ originTodoList, updateTodo }: Params) => {
     [navigate, todo?.id, inputTitle, inputContent, updateTodo]
   );
 
-  const states = {
+  const states: StatesType = {
     todo,
     inputTitle,
     inputContent
   };
 
-  const actions = {
+  const actions: ActionsType = {
     handleChangeTitle,
     handleChangeContent,
     handleUpdateTodo
