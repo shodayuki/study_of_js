@@ -3,13 +3,13 @@
  *
  * @package components
  */
-import React from 'react';
 import { useTodoEditTemplate } from './useTodoEditTemplate';
 import { useTodoContext } from '../../../contexts/TodoContext';
 import { BaseLayout } from '../../organisims/BaseLayout';
 import { InputForm } from '../../atoms/InputForm';
 import { TextArea } from '../../atoms/TextArea';
 import { CommonButton } from '../../atoms/CommonButton';
+// @ts-ignore
 import styles from "./styles.module.css";
 
 /**
@@ -47,7 +47,7 @@ export const TodoEditTemplate = () => {
           <div className={styles.area}>
             <CommonButton
               type="submit"
-              label="Edit Todo"
+              title="Edit Todo"
             />
           </div>
         </form>

@@ -6,8 +6,27 @@
 import { useMemo, useState, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { NAVIGATION_PATH } from '../../../constants/navigations';
+import { TodoType } from '../../../interfaces/Todo';
+import { EventType } from '../../../interfaces/Event';
 
-export const useTodoEditTemplate = ({ originTodoList, updateTodo }) => {
+type Params = {
+  originTodoList: Array<TodoType>
+  updateTodo: (id: number, title: string, content: string) => void;
+}
+
+type StatesType = {
+  todo: TodoType | undefined
+  inputTitle: string,
+  inputContent: string
+}
+
+type ActionsType = {
+  handleChangeTitle: EventType['onChangeInput']
+  handleChangeContent: EventType['onChangeTextArea']
+  handleUpdateTodo: EventType['onSubmit']
+}
+
+export const useTodoEditTemplate = ({ originTodoList, updateTodo }: Params) => {
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -25,7 +44,7 @@ export const useTodoEditTemplate = ({ originTodoList, updateTodo }) => {
    *
    * @type {function(*): void}
    */
-  const handleChangeTitle = useCallback(
+  const handleChangeTitle: EventType['onChangeInput'] = useCallback(
     (e) => setInputTitle(e.target.value),[]
   );
 
@@ -34,7 +53,7 @@ export const useTodoEditTemplate = ({ originTodoList, updateTodo }) => {
    *
    * @type {function(*): void}
    */
-  const handleChangeContent = useCallback(
+  const handleChangeContent: EventType['onChangeTextArea'] = useCallback(
     (e) => setInputContent(e.target.value),[]
   );
 
@@ -43,7 +62,7 @@ export const useTodoEditTemplate = ({ originTodoList, updateTodo }) => {
    *
    * @type {(function(*): void)|*}
    */
-  const handleUpdateTodo = useCallback(
+  const handleUpdateTodo: EventType['onSubmit'] = useCallback(
     (e) => {
       e.preventDefault();
       if (!!todo?.id && inputTitle !== "" && inputContent !== "") {
@@ -66,5 +85,5 @@ export const useTodoEditTemplate = ({ originTodoList, updateTodo }) => {
     handleUpdateTodo
   };
 
-  return [states, actions];
+  return [states, actions] as const;
 };
