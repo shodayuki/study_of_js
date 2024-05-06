@@ -33,8 +33,7 @@ export const useTodoTemplate = ({
 
   /* 表示用TodoList */
   const showTodoList = useMemo(() => {
-    const regexp = new RegExp('^' + searchKeyword + 'i');
-
+    const regexp = new RegExp('^' + searchKeyword, 'i');
     return originTodoList?.filter((todo) => {
       // 検索キーワードに部分一致したTodoだけを一覧表示する
       return todo.title.match(regexp);
