@@ -18,6 +18,26 @@ class Friend
   }
 
   // 行動する
+  action()
+  {
+    if (this.hp > 0) {
+      // コマンドに応じた処理を行う
+      switch (this.command) {
+        // 攻撃
+        case "enemyCommand":
+          this.attack();
+          break;
+
+        // 回復
+        case "recoveryCommand":
+          this.recovery();
+          break;
+
+        default:
+          Message.printMessage(this.name + "はボーッとした<br>");
+      }
+    }
+  }
 
   // 攻撃する
 
