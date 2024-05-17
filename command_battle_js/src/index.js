@@ -59,7 +59,36 @@ class Friend
   }
 
   // 回復する
+  recovery()
+  {
+    // 薬草がない場合
+    if (this.herb <= 0) {
+      Message.printMessage(this.name + "は薬草を・・・<br>薬草がない！<br>");
+      return;
+    }
 
+    // 体力が最大体力の場合
+    if (this.maxHp === this.hp) {
+      Message.printMessage(this.name + "は薬草を・・・<br>これ以上回復できない！<br>");
+      return;
+    }
+
+    // 回復する値
+    let heal = this.herbPower;
+
+    // 最大体力を超えて回復してしまいそうな場合
+    if (this.maxHp - this.hp < this.herbPower) {
+      heal = this.maxHp - this.hp;
+    }
+
+    // 体力を回復する
+    this.hp += heal;
+
+    // 薬草を一つ減らす
+    --this.herb;
+
+    Message.printMessage(this.name + "は薬草を飲んだ<br>体力が" + heal + "回復した！<br>");
+  }
 }
 
 class Message
