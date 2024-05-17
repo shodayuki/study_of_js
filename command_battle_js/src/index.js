@@ -1,6 +1,21 @@
 class Friend
 {
   // コンストラクタ
+  constructor(name, maxHp, offence, speed, herb, herbPower)
+  {
+    this.name = name;
+    this.type = "friend";
+    this.maxHp = maxHp;
+    this.hp = maxHp;
+    this.liveFlg = true;
+    this.offence = offence;
+    this.speed = speed;
+    this.herb = herb;
+    this.herbPower = herbPower;
+
+    this.command = "";
+    this.target = "";
+  }
 
   // 行動する
 
