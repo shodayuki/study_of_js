@@ -40,6 +40,23 @@ class Friend
   }
 
   // 攻撃する
+  attack()
+  {
+    // 攻撃相手が生存していれば攻撃する
+    if (this.target.liveFlg) {
+      // 敵の体力から自分の体力を引く
+      this.target.hp -= this.offence;
+
+      // 攻撃相手の体力がマイナスになる場合は0にする
+      if (this.target.hp < 0) {
+        this.target.hp = 0;
+      }
+
+      Message.printMessage(this.name + "の攻撃<br>" + this.target.name + this.offence + "のダメージを与えた!<br>");
+    } else {
+      Message.printMessage(this.name + "の攻撃・・・<br>" + this.target.name + "は倒れている<br>");
+    }
+  }
 
   // 回復する
 
