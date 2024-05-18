@@ -13,5 +13,6 @@ characters.push(friend3);
 characters.push(enemy1);
 characters.push(enemy2);
 
-friend1.command = "recoveryCommand";
-friend1.action();
+characters[0].command = "enemyCommand";
+characters[0].target = characters[searchCharacterByName("トロル")[0]];
+characters[0].action();

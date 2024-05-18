@@ -52,7 +52,7 @@ class Friend
         this.target.hp = 0;
       }
 
-      Message.printMessage(this.name + "の攻撃<br>" + this.target.name + this.offence + "のダメージを与えた!<br>");
+      Message.printMessage(this.name + "の攻撃<br>" + this.target.name + "に" + this.offence + "のダメージを与えた!<br>");
     } else {
       Message.printMessage(this.name + "の攻撃・・・<br>" + this.target.name + "は倒れている<br>");
     }
@@ -258,6 +258,23 @@ function searchLivedcharacterByType(type)
     ++i;
   }
   return characterElementNum;
+}
+
+/**
+ * 種別（type）で指定された生存しているキャラクターの要素番号をランダムで返す
+ *
+ * @param type
+ * @returns {*}
+ */
+function searchLivedcharacterRandom(type)
+{
+  // 生存しているキャラクターを探して、その要素番号を配列にセットする
+  let livedcharacter = searchLivedcharacterByType(type);
+
+  // 生存しているキャラクターの中からランダムで1人選ぶ
+  let randomValue = getRandomIntInclusive(0, livedcharacter.length - 1);
+
+  return livedcharacter[randomValue];
 }
 
 /**
