@@ -439,6 +439,22 @@ class Command
   {
     // 味方のコマンド選択
     let result = command.commandTurn(event);
+
+    // 味方全員のコマンド選択が終わった場合
+    if (result) {
+      // 戦闘開始
+      let promise = gameManage.battle();
+
+      // gameManage.battle()が終了したときに実行される
+      promise.then(
+        function (bool) {
+          // 戦闘が終了していない場合はコマンドを表示する
+          if (bool) {
+            command.preparation();
+          }
+        }
+      );
+    }
   }
 
   // 味方全員のコマンド選択が終わったらtrueを返す
@@ -459,6 +475,14 @@ class Command
         this.showCommand(text);
         // 表示されたコマンドにイベントハンドラを割り当てる
         characters[this.friendElementNum[this.current]].setEventHandler("start");
+      }
+      // 味方全員のコマンド選択が終わった場合
+      else {
+        // コマンドビューを空白にする
+        commandView.innerHTML = "";
+
+        this.current = 0;
+        return true;
       }
     }
     // 味方1人のコマンド入力が終わっていない場合
