@@ -427,6 +427,22 @@ function searchLivedcharacterRandom(type)
 }
 
 /**
+ * msミリ秒スリープする
+ *
+ * @param ms
+ * @returns {Promise<unknown>}
+ */
+function sleep(ms)
+{
+  return new Promise(
+    function (resolve) {
+      // msミリ秒スリープする
+      setTimeout(resolve, ms);
+    }
+  );
+}
+
+/**
  * minからmaxまでのランダムな整数を返す
  *
  * @param min
