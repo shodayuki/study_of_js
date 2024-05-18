@@ -113,6 +113,36 @@ class Enemy
   }
 }
 
+class Troll extends Enemy
+{
+  // コンストラクタ
+  constructor(name, hp, offence, speed, path) {
+    super(name, hp, offence, speed, path);
+  }
+
+  // 攻撃メソッド
+  attack()
+  {
+    // 生存している味方をランダムに選択する
+    let f = characters[searchLivedcharacterRandom("friend")];
+
+    // 攻撃対象の体力から自分の攻撃力を引く
+    f.hp -= this.offence;
+
+    // 攻撃相手の体力がマイナスになる場合は0にする
+    if (f.hp < 0) {
+      f.hp = 0;
+    }
+
+    // 攻撃相手が生存していれば攻撃
+    if (f.liveFlg) {
+      Message.printMessage(this.name + "が襲いかかってきた<br>" + f.name + "は" + this.offence + "のダメージを受けた！<br>");
+    } else {
+      Message.printMessage(this.name + "の攻撃・・・<br>" + f.name + "は倒れている<br>");
+    }
+  }
+}
+
 class Message
 {
   // メッセージを表示する
