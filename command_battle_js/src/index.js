@@ -216,6 +216,29 @@ function isAliveByType(type)
 }
 
 /**
+ * 名前でキャラクターを探索し、配列の要素番号を返す
+ *
+ * @param name
+ * @returns {*[]}
+ */
+function searchCharacterByName(name)
+{
+  // 探索した配列の要素番号
+  let characterElementNum = [];
+
+  // 指定されたキャラクターを探す
+  let i = 0;
+  for (let c of characters) {
+    if (c.name === name) {
+      characterElementNum.push(i);
+    }
+    ++i;
+  }
+
+  return characterElementNum;
+}
+
+/**
  * minからmaxまでのランダムな整数を返す
  *
  * @param min
