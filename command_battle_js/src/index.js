@@ -17,6 +17,12 @@ class Friend
     this.target = "";
   }
 
+  // 表示用のパラメータを返す
+  getMainParameter()
+  {
+    return "<b>" + this.name + "</b><br>" + "体力 " + this.hp + "<br>" + "薬草 " + this.herb + "<br>";
+  }
+
   // 行動する
   action()
   {
