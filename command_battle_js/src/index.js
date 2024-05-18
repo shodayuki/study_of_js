@@ -263,6 +263,24 @@ class GameManage
     }
   }
 
+  // 勝敗の判定をする
+  judgeWinLose()
+  {
+    // 味方が残っていなければゲームオーバー
+    if (!isAliveByType("friend")) {
+      Message.addMessage("全滅しました・・・<br>");
+      return "lose";
+    }
+
+    // 敵が残っていなければ勝利
+    if (!isAliveByType("enemy")) {
+      Message.addMessage("モンスターをやっつけた<br>");
+      return "win";
+    }
+
+    return "none";
+  }
+
   // 1ターン
   async battle()
   {
