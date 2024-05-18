@@ -244,6 +244,46 @@ class GameManage
   {
     Message.printMessage("モンスターが現れた<br>");
   }
+
+  // 1ターン
+  async battle()
+  {
+    // 勝敗
+    let winLose = "none";
+
+    for (let c of characters) {
+      // 倒れたキャラクターはスキップする
+      if (c.liveFlg === false) {
+        continue;
+      }
+
+      await sleep(900);
+
+      // 各キャラクターの行動
+      c.action();
+
+      await sleep(1100);
+
+      // パラメータを更新
+      this.showParameter();
+
+      await sleep(900);
+
+      // 倒れたキャラクターを処理
+      this.removeDiedcharacter();
+
+      await sleep(300);
+
+      // 勝敗の判定をする
+      winLose = this.judgeWinLose();
+
+      // 決着がついた場合
+      if (winLose === "win" || winLose === "lose") {
+        return false;
+      }
+    }
+    return true;
+  }
 }
 
 class Message
