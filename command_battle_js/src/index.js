@@ -206,6 +206,27 @@ class GameManage
       }
     );
   }
+
+  // パラメータを表示または更新する
+  showParameter()
+  {
+    // パラメータを消去する
+    parameterView.innerHTML = "";
+
+    // 味方のパラメータを表示する
+    for (let c of characters) {
+      if (c.type === "friend") {
+        parameterView.innerHTML += '<div class="parameter">' + c.getMainParameter() + '</div>';
+      }
+    }
+
+    // 敵のパラメータをコンソールに表示する（デバッグ用）
+    for (let c of characters) {
+      if (c.type === "enemy") {
+        console.log(c.name + " " + c.hp);
+      }
+    }
+  }
 }
 
 class Message
