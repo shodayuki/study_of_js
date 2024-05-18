@@ -198,6 +198,24 @@ Message.printMessage("あれすの攻撃<br>");
 Message.addMessage("トロルに20のダメージを与えた！<br>");
 
 /**
+ * 種別（type）で指定されたキャラクターが全滅しているかを調べる
+ *
+ * @param type
+ * @returns {boolean}
+ */
+function isAliveByType(type)
+{
+  for (let c of characters) {
+    // 1人でも生存していたらtrueを返す
+    if (c.type === type && c.liveFlg === true) {
+      return true;
+    }
+  }
+  // 全滅しているときはfalseを返す
+  return false;
+}
+
+/**
  * minからmaxまでのランダムな整数を返す
  *
  * @param min
