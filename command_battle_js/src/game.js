@@ -14,6 +14,8 @@ characters.push(enemy1);
 characters.push(enemy2);
 
 let gameManage = new GameManage();
+let command = new Command();
+command.preparation();
 
 characters[1].command = "enemyCommand";
 characters[1].target = characters[searchCharacterByName("トロル")[0]];

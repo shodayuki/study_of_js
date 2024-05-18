@@ -23,6 +23,31 @@ class Friend
     return "<b>" + this.name + "</b><br>" + "体力 " + this.hp + "<br>" + "薬草 " + this.herb + "<br>";
   }
 
+  getCommand(event)
+  {
+    // はじめに表示するコマンド
+    if (event === "start") {
+      let text = [
+        '<div><b id="friendName">' + this.name + '</b></div>',
+        '<div id="attackCommand">攻撃</div>',
+        '<div id="recoveryCommand">薬草</div>'
+      ];
+      return text;
+    }
+  }
+
+  // 表示されたコマンドにイベントハンドラを登録する
+  setEventHandler(event)
+  {
+    // コマンドの初期状態の場合
+    if (event === "start") {
+      // 攻撃コマンドのイベントハンドラを設定する
+      attackCommand.addEventListener("click", command.callback);
+      // 回復コマンドのイベントハンドラを設定する
+      recoveryCommand.addEventListener("click", command.callback);
+    }
+  }
+
   // 行動する
   action()
   {
@@ -325,6 +350,46 @@ class GameManage
       }
     }
     return true;
+  }
+}
+
+class Command
+{
+  // コンストラクタ
+  constructor() {
+    // コマンドを実行する味方
+    this.friendElementNum = [];
+    // 何人目の味方がコマンド選択中か（0が1人目）
+    this.current = 0;
+  }
+
+  // コマンド入力の準備をする
+  preparation()
+  {
+    // コマンドを実行する味方の配列を空にする
+    this.friendElementNum.splice(0);
+
+    // コマンドを選択する味方を配列に詰める
+    for (let c of characters) {
+      if (c.type === "friend" && c.liveFlg === true) {
+        this.friendElementNum.push(characters.indexOf(c));
+      }
+    }
+
+    // 味方のコマンドを取得する
+    let text = characters[this.friendElementNum[this.current]].getCommand("start");
+
+    // コマンドを表示する
+    this.showCommand(text);
+
+    // イベントハンドラを登録する
+    characters[this.friendElementNum[this.current]].setEventHandler("start");
+  }
+
+  // コマンドを表示する
+  showCommand(commands)
+  {
+    commandView.innerHTML = commands.join("");
   }
 }
 
