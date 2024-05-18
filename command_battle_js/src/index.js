@@ -34,6 +34,40 @@ class Friend
       ];
       return text;
     }
+
+    // 選択されたコマンドのidまたはclassを取得する
+    if (event.target.id !== "") {
+      this.command = event.target.id;
+    } else {
+      this.command = event.target.className;
+    }
+
+    // 攻撃コマンドが選択されたとき
+    if (this.command === "attackCommand") {
+      // 生存している敵の配列（characters配列の要素番号）を取得する
+      let livedEnemy = searchLivedcharacterByType("enemy");
+      // 生存している敵をコマンドビューに表示するためのHTML
+      let livedEnemyHTML = [];
+
+      // 生存している敵をコマンドビューに表示する
+      for (let c of livedEnemy) {
+        livedEnemyHTML.push('<div class="enemyCommand">' + characters[c].name + '</div>');
+      }
+
+      livedEnemyHTML.unshift('<div><b id="friendName">' + this.name + '</b></div>');
+
+      return livedEnemyHTML;
+    }
+    // 敵が選択されたとき
+    else if (this.command === "enemyCommand") {
+      // 選択された敵をターゲットとして保存する
+      this.target = characters[searchCharacterByName(event.target.innerText)[0]];
+      return "end";
+    }
+    // 薬草コマンドが選択されたとき
+    else if (this.command === "recoveryCommand") {
+      return "end";
+    }
   }
 
   // 表示されたコマンドにイベントハンドラを登録する
@@ -45,6 +79,14 @@ class Friend
       attackCommand.addEventListener("click", command.callback);
       // 回復コマンドのイベントハンドラを設定する
       recoveryCommand.addEventListener("click", command.callback);
+    }
+
+    // 攻撃コマンドが選択された場合
+    if (this.command === "attackCommand") {
+      let element = document.getElementsByClassName("enemyCommand");
+      for (let i = 0; i < element.length; i++) {
+        element[i].addEventListener("click", command.callback);
+      }
     }
   }
 
@@ -390,6 +432,44 @@ class Command
   showCommand(commands)
   {
     commandView.innerHTML = commands.join("");
+  }
+
+  // コマンドをクリックしたときのコールバック関数
+  callback(event)
+  {
+    // 味方のコマンド選択
+    let result = command.commandTurn(event);
+  }
+
+  // 味方全員のコマンド選択が終わったらtrueを返す
+  commandTurn(event)
+  {
+    // 味方1人のコマンドを取得する
+    let result = characters[this.friendElementNum[this.current]].getCommand(event);
+
+    // 味方1人のコマンド入力が終わりの場合
+    if (result === "end") {
+      // コマンドを選択していない味方が残っている場合
+      if (!(this.current === this.friendElementNum.length - 1)) {
+        // 次の味方
+        ++this.current;
+        // 味方のコマンドを取得する
+        let text = characters[this.friendElementNum[this.current]].getCommand("start");
+        // コマンドを表示する
+        this.showCommand(text);
+        // 表示されたコマンドにイベントハンドラを割り当てる
+        characters[this.friendElementNum[this.current]].setEventHandler("start");
+      }
+    }
+    // 味方1人のコマンド入力が終わっていない場合
+    else {
+      // 次のコマンドを表示してイベントハンドラを登録する
+      this.showCommand(result);
+      // 表示されたコマンドにイベントハンドラを割り当てる
+      characters[this.friendElementNum[this.current]].setEventHandler();
+    }
+
+    return false;
   }
 }
 
