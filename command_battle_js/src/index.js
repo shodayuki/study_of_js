@@ -238,6 +238,12 @@ class GameManage
       }
     }
   }
+
+  // 戦闘開始時のメッセージを表示する
+  showFirstMessage()
+  {
+    Message.printMessage("モンスターが現れた<br>");
+  }
 }
 
 class Message
