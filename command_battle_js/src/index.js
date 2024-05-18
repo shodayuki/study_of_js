@@ -239,6 +239,28 @@ function searchCharacterByName(name)
 }
 
 /**
+ * 種別（type）で指定された生存しているキャラクターを探し、配列の要素番号を返す
+ *
+ * @param type
+ * @returns {*[]}
+ */
+function searchLivedcharacterByType(type)
+{
+  // 種別（type）で指定された生存しているキャラクター配列の要素番号
+  let characterElementNum = [];
+
+  // 種別（type）で指定された生存しているキャラクターを探す
+  let i = 0;
+  for (let c of characters) {
+    if (c.type === type && c.liveFlg === true) {
+      characterElementNum.push(i);
+    }
+    ++i;
+  }
+  return characterElementNum;
+}
+
+/**
  * minからmaxまでのランダムな整数を返す
  *
  * @param min
