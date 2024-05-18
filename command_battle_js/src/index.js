@@ -227,6 +227,17 @@ class GameManage
       }
     }
   }
+
+  // 敵の画像を表示する
+  showEnemyImage()
+  {
+    let i = 0;
+    for (let c of characters) {
+      if (c.type === "enemy") {
+        enemyImageView.innerHTML += '<img alt="#" id="enemyImage' + characters.indexOf(c) + '" src="' + c.path + '" style="position:absolute; left:' + (160 * i++) +'px; bottom: 0">';
+      }
+    }
+  }
 }
 
 class Message
