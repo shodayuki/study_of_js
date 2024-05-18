@@ -91,6 +91,28 @@ class Friend
   }
 }
 
+class Enemy
+{
+  // コンストラクタ
+  constructor(name, hp, offence, speed, path)
+  {
+    this.name = name;
+    this.type = "enemy";
+    this.hp = hp;
+    this.liveFlg = true;
+    this.offence = offence;
+    this.speed = speed;
+    this.path = path;
+  }
+
+  action()
+  {
+    if (this.hp > 0) {
+      this.attack();
+    }
+  }
+}
+
 class Message
 {
   // メッセージを表示する
