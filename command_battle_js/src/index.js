@@ -245,6 +245,24 @@ class GameManage
     Message.printMessage("モンスターが現れた<br>");
   }
 
+  // 倒れたキャラクターを処理する
+  removeDiedcharacter()
+  {
+    for (let c of characters) {
+      if (c.hp <= 0 && c.liveFlg === true) {
+        Message.addMessage(c.name + "は倒れた<br>");
+
+        // 生存フラグを落とす
+        c.liveFlg = false;
+
+        // 敵の場合は画像を削除
+        if (c.type === "enemy") {
+          document.getElementById("enemyImage" + characters.indexOf(c)).remove();
+        }
+      }
+    }
+  }
+
   // 1ターン
   async battle()
   {
