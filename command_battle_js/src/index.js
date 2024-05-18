@@ -196,3 +196,16 @@ class Message
 
 Message.printMessage("あれすの攻撃<br>");
 Message.addMessage("トロルに20のダメージを与えた！<br>");
+
+/**
+ * minからmaxまでのランダムな整数を返す
+ *
+ * @param min
+ * @param max
+ * @returns {number}
+ */
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
