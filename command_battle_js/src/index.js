@@ -143,6 +143,42 @@ class Troll extends Enemy
   }
 }
 
+class Dragon extends Enemy
+{
+  // コンストラクター
+  constructor(name, hp, offence, speed, path) {
+    super(name, hp, offence, speed, path);
+  }
+
+  // 攻撃メソッド
+  attack()
+  {
+    // 一定の確率で攻撃をミスする
+    if (getRandomIntInclusive(0, 4) === 4) {
+      Message.printMessage("ドラゴンは<br>グフッグフッと咳き込んでいる・・・<br>");
+      return;
+    }
+
+    // 生存している味方をランダムに選択する
+    let f = characters[searchLivedcharacterRandom("friend")];
+
+    // 攻撃対象の体力から自分の攻撃力を引く
+    f.hp -= this.offence;
+
+    // 攻撃相手の体力がマイナスになる場合は0にする
+    if (f.hp < 0) {
+      f.hp = 0;
+    }
+
+    // 攻撃相手が生存していれば攻撃
+    if (f.liveFlg) {
+      Message.printMessage(this.name + "は炎を吹いた<br>" + f.name + "は" + this.offence + "のダメージを受けた！<br>");
+    } else {
+      Message.printMessage(this.name + "の攻撃・・・<br>" + f.name + "は倒れている<br>");
+    }
+  }
+}
+
 class Message
 {
   // メッセージを表示する
