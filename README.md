@@ -4,6 +4,9 @@
  - Web制作などで使いまわしができるスニペットコード
  - Ajax を用いた非同期処理
  - React.js
+ - Next.js
+ - Vue.js
+ - Nuxt.js
  - TypeScript
 
 ## 使用技術
@@ -11,5 +14,8 @@
  - CSS
  - JavaScript
  - jQuery
- - React
+ - React.js
+ - Next.js
+ - Vue.js
+ - Nuxt.js
  - TypeScript
