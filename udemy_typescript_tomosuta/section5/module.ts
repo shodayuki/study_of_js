@@ -1,6 +1,6 @@
 // 中括弧で囲っていないBaseItemはexport defaultしたもの
 // taxはexport defaultしていないもの
-import BaseItem, { tax } from './Item.js';
+import BaseItem, { tax } from './Item';
 
 class Food extends BaseItem {
   getTaxPrice(): number {
