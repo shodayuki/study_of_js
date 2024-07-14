@@ -19,5 +19,8 @@ const showSeatBoxes = function(){
   document.querySelector('#seat').innerHTML = insertHTML;
 }
 
-shuffleArray();
-showSeatBoxes();
+const timer = setInterval(function(){
+  shuffleArray();
+  showSeatBoxes();
+  clearInterval(timer);
+}, 50);
