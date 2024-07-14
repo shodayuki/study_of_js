@@ -14,7 +14,7 @@ const showSeatBoxes = function(){
   let insertHTML = '';
 
   studentNumberList.forEach(function (num) {
-    insertHTML += '<div class="seat__item">' + num + '</div>';
+    insertHTML += `<div class="seat__item">${num}</div>`;
   })
 
   document.querySelector('#seat').innerHTML = insertHTML;
@@ -47,13 +47,14 @@ const setTargetStudents = function(studentNumber){
 
 document.querySelector('#btn-start').addEventListener('click', function(){
   const studentNumber = document.querySelector('#studentNumber').value;
+  const studentUpperLimit = 50;
 
   if (studentNumber === "") {
     alert('人数が未入力です。入力してからスタートボタンを押してください。');
     return false;
   }
 
-  if (studentNumber > 0) {
+  if (studentNumber > studentUpperLimit) {
     alert('人数は50人以内に設定してください！');
     return false;
   }
