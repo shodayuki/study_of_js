@@ -27,8 +27,19 @@ database.onerror = function(event) {
 
 // フォームの内容をデータベースに登録
 function regist() {
-  // フォームの入力チェック。falseが返却されたら登録処理を中断
+  // フォームの入力チェック
+  // falseが返却されたら登録処理を中断
   if (inputCheck() === false) {
     return;
+  }
+
+  // ラジオボタンを取得
+  let radio = document.getElementsByName("balance");
+  let balance;
+  for (let i = 0; i < radio.length; i++) {
+    if (radio[0].checked === true) {
+      balance = radio[i].ariaValueMax;
+      break;
+    }
   }
 }
