@@ -42,4 +42,16 @@ function regist() {
       break;
     }
   }
+
+  // フォームに入力された値を取得
+  let date = document.getElementById("date").value;
+  let amount = document.getElementById("amount").value;
+  let memo = document.getElementById("memo").value;
+  let category = document.getElementById("category").value;
+
+  // ラジオボタンが収入を選択している場合、カテゴリを「収入」とする
+  if (balance === "収入") {}
+
+  // データベースにデータを登録
+  insertData(balance, date, category, amount, memo);
 }
