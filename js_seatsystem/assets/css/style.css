@@ -82,6 +82,10 @@ body {
   align-items: center;
 }
 
+.c-overlay.is-closed {
+  display: none;
+}
+
 .c-overlay__inner {
   box-sizing: border-box;
   position: absolute;

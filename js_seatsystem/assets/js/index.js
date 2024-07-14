@@ -31,6 +31,8 @@ const soundPlay = function(){
 }
 
 document.querySelector('#btn-start').addEventListener('click', function(){
+  document.querySelector('.c-overlay').classList.add('is-closed');
+
   timer = setInterval(function(){
     shuffleArray();
     showSeatBoxes();
