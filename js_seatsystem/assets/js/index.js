@@ -19,8 +19,16 @@ const showSeatBoxes = function(){
   document.querySelector('#seat').innerHTML = insertHTML;
 }
 
+const soundPlay = function(){
+  const audioElement = new Audio();
+  audioElement.src = 'assets/audio/drum.mp3';
+  audioElement.play();
+}
+
 const timer = setInterval(function(){
   shuffleArray();
   showSeatBoxes();
   clearInterval(timer);
 }, 50);
+
+soundPlay();
