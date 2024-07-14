@@ -71,4 +71,40 @@ function insertData(balance, date, category, amount, memo) {
     amount: amount,
     memo: memo,
   }
+
+  // データベースを開く
+  let database = indexedDB.open(dbName, dbVersion);
+
+  // データベースが開かなかったときの処理
+  database.onerror = function(event) {
+    console.log('データベースに接続できませんでした。');
+  }
+
+  // データベースを開いたらデータの登録を実行
+  database.onsuccess = function(event) {
+    let db = event.target.result;
+    let transaction = db.transaction(storeName, "readwrite");
+
+    transaction.oncomplete = function(event) {
+      console.log('トランザクション完了');
+    }
+
+    transaction.onerror = function(event) {
+      console.log('トランザクションエラー');
+    }
+
+    let store = transaction.objectStore(storeName);
+    let addData = store.add(data);
+
+    addData.onsuccess = function(event) {
+      console.log('データ登録できました');
+      alert('登録しました');
+    }
+
+    addData.onerror = function(event) {
+      console.log('データが登録できませんでした');
+    }
+
+    db.close();
+  }
 }
