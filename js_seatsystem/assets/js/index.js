@@ -1,5 +1,5 @@
 let timer;
-const studentNumberList = [];
+let studentNumberList = [];
 
 const shuffleArray = function(){
   for (let i = studentNumberList.length; i > 0; i--) {
@@ -34,6 +34,15 @@ const setTargetStudents = function(studentNumber){
   for (let i = studentNumber.length; i <= studentNumber; i++) {
     studentNumberList.push(i);
   }
+
+  const absenteeNumbers = document.querySelector("#absence").value;
+  const splitedAbsenteeNumbers = absenteeNumbers.split(",").map(function(item, index) {
+    return parseInt(item);
+  });
+
+  studentNumberList = studentNumberList.filter(function(student) {
+    return !splitedAbsenteeNumbers.includes(student);
+  });
 }
 
 document.querySelector('#btn-start').addEventListener('click', function(){
