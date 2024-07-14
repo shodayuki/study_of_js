@@ -24,3 +24,11 @@ database.onsuccess = function(event) {
 database.onerror = function(event) {
   console.log('データベースに接続できませんでした。');
 }
+
+// フォームの内容をデータベースに登録
+function regist() {
+  // フォームの入力チェック。falseが返却されたら登録処理を中断
+  if (inputCheck() === false) {
+    return;
+  }
+}
