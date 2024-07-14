@@ -55,3 +55,20 @@ function regist() {
   // データベースにデータを登録
   insertData(balance, date, category, amount, memo);
 }
+
+// データの挿入
+function insertData(balance, date, category, amount, memo) {
+  // 一意のIDを現在の日時から作成
+  let uniqueId = new Date().getTime().toString();
+  console.log(uniqueId);
+
+  // データベースに登録するための連想配列のデータを作成
+  let data = {
+    id: uniqueId,
+    balance: balance,
+    date: String(date),
+    category: category,
+    amount: amount,
+    memo: memo,
+  }
+}
