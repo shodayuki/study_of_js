@@ -1,3 +1,4 @@
+let timer;
 const studentNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 
 const shuffleArray = function(){
@@ -23,13 +24,16 @@ const soundPlay = function(){
   const audioElement = new Audio();
   audioElement.src = 'assets/audio/drum.mp3';
   audioElement.play();
+
+  audioElement.addEventListener('ended', function(){
+    clearInterval(timer);
+  })
 }
 
 document.querySelector('#btn-start').addEventListener('click', function(){
-  const timer = setInterval(function(){
+  timer = setInterval(function(){
     shuffleArray();
     showSeatBoxes();
-    clearInterval(timer);
   }, 50);
 
   soundPlay();
