@@ -61,3 +61,16 @@ body {
   box-shadow: 0 0 36px 30px rgb(0 0 0 / 10%);
   text-transform: uppercase;
 }
+
+/*
+ * モーダル
+*/
+
+.c-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
