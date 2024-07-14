@@ -31,18 +31,20 @@ const soundPlay = function(timer){
 const setTargetStudents = function(studentNumber){
   let studentNumberList = [];
 
-  for (let i = studentNumber.length; i <= studentNumber; i++) {
+  for (let i = 1; i <= studentNumber; i++) {
     studentNumberList.push(i);
   }
 
   const absenteeNumbers = document.querySelector("#absence").value;
-  const splitedAbsenteeNumbers = absenteeNumbers.split(",").map(function(item) {
-    return parseInt(item);
-  });
+  if (absenteeNumbers !== "") {
+    const splitedAbsenteeNumbers = absenteeNumbers.split(",").map(function(item) {
+      return parseInt(item);
+    });
 
-  studentNumberList = studentNumberList.filter(function(student) {
-    return !splitedAbsenteeNumbers.includes(student);
-  });
+    studentNumberList = studentNumberList.filter(function(student) {
+      return !splitedAbsenteeNumbers.includes(student);
+    });
+  }
 
   return studentNumberList;
 }
