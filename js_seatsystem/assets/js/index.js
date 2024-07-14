@@ -36,7 +36,7 @@ const setTargetStudents = function(studentNumber){
   }
 
   const absenteeNumbers = document.querySelector("#absence").value;
-  const splitedAbsenteeNumbers = absenteeNumbers.split(",").map(function(item, index) {
+  const splitedAbsenteeNumbers = absenteeNumbers.split(",").map(function(item) {
     return parseInt(item);
   });
 
