@@ -30,14 +30,18 @@ const soundPlay = function(){
   })
 }
 
+const setTargetStudents = function(studentNumber){
+  for (let i = studentNumber.length; i <= studentNumber; i++) {
+    studentNumberList.push(i);
+  }
+}
+
 document.querySelector('#btn-start').addEventListener('click', function(){
   const studentNumber = document.querySelector('#studentNumber').value;
 
   document.querySelector('.c-overlay').classList.add('is-closed');
 
-  for (let i = 1; i <= studentNumber; i++) {
-    studentNumberList.push(i);
-  }
+  setTargetStudents(studentNumber);
 
   timer = setInterval(function(){
     shuffleArray();
