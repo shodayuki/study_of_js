@@ -55,7 +55,7 @@ document.querySelector('#btn-start').addEventListener('click', function(){
   }
 
   if (studentNumber > studentUpperLimit) {
-    alert('人数は50人以内に設定してください！');
+    alert(`人数は${studentUpperLimit}人以内に設定してください！`);
     return false;
   }
 
