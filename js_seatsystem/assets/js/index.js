@@ -25,10 +25,12 @@ const soundPlay = function(){
   audioElement.play();
 }
 
-const timer = setInterval(function(){
-  shuffleArray();
-  showSeatBoxes();
-  clearInterval(timer);
-}, 50);
+document.querySelector('#btn-start').addEventListener('click', function(){
+  const timer = setInterval(function(){
+    shuffleArray();
+    showSeatBoxes();
+    clearInterval(timer);
+  }, 50);
 
-soundPlay();
+  soundPlay();
+});
