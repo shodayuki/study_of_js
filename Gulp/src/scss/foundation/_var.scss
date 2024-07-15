@@ -1,0 +1,46 @@
+// ==========================================================================
+// breakpoint
+// ==========================================================================
+
+$breakSP: 768;
+$breakPC: 1200;
+$breakpoints: (
+  'u-sp': 'print, screen and (max-width: #{$breakSP}px)',
+  'u-pc': 'print, screen and (min-width: #{$breakSP + 1}px)',
+  'o-pc': 'print, screen and (min-width: #{$breakPC + 1}px)',
+  'u-tb': 'print, screen and (max-width: #{$breakPC}px) and (min-width: #{$breakSP + 1}px)',
+) !default;
+@mixin mq($breakpoint) {
+  @media #{inspect(map-get($breakpoints, $breakpoint))} {
+    @content;
+  }
+}
+
+
+// ==========================================================================
+// ie用
+// ==========================================================================
+@mixin ie {
+  @media all and (-ms-high-contrast: none) {
+    @content;
+  }
+}
+
+
+// ==========================================================================
+// path
+// ==========================================================================
+
+$bgPath: '../../dist/images/';
+
+// ==========================================================================
+// color
+// ==========================================================================
+$colorWhite: #FFFFFF;
+$colorBlack: #000;
+$colorBackground: #f4f4f4;
+$colorFormText: #555;
+$colorFormBorder: #eeeeee;
+$colorFormCaution: red;
+$colorFormBtn: #cdcdcd;
+$colorModal: #108de8;

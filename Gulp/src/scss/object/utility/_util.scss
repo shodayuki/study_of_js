@@ -1,0 +1,23 @@
+@import "../../foundation/var";
+
+.u-hidden {
+  display: none !important;
+}
+
+.u-hidden-sp {
+  @include mq(u-sp) {
+    display: none !important;
+  }
+}
+
+.u-hidden-tb {
+  @include mq(u-tb){
+    display: none !important;
+  }
+}
+
+.u-hidden-pc {
+  @include mq(u-pc) {
+    display: none !important;
+  }
+}
