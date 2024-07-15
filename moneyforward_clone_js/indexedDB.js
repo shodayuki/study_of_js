@@ -150,12 +150,55 @@ function createList() {
 						<td>${element.category}</td>
 						<td>${element.amount}</td>
 						<td>${element.memo}</td>
-						<td><button>×</button></td>
+						<td><button onclick="deleteData('${element.id}')">×</button></td>
 					</tr>
 				`;
       });
       table += `</table>`;
       section.innerHTML = table;
     }
+  }
+}
+
+/**
+ * データ削除
+ *
+ * id int
+ */
+function deleteData(id) {
+  // データベースを開く
+  let database = indexedDB.open(dbName, dbVersion);
+
+  // 開いたら削除を実行
+  database.onsuccess = function(event) {
+    let db = event.target.result;
+    let transaction = db.transaction(storeName, "readwrite");
+
+    transaction.oncomplete = function(event) {
+      console.log('トランザクション完了');
+    }
+
+    transaction.onerror = function(event) {
+      console.log('トランザクションエラー');
+    }
+
+    let store = transaction.objectStore(storeName);
+    let deleteData = store.delete(id);
+
+    deleteData.onsuccess = function(event) {
+      console.log('削除成功');
+      createList();
+    }
+
+    deleteData.onerror = function(event) {
+      console.log('削除失敗');
+    }
+
+    db.close();
+  }
+
+  // データベースが開けなかったときの処理
+  database.onerror = function(event) {
+    console.log('データベースに接続できませんでした。');
   }
 }
