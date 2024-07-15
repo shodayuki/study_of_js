@@ -37,8 +37,8 @@ function regist() {
   let radio = document.getElementsByName("balance");
   let balance;
   for (let i = 0; i < radio.length; i++) {
-    if (radio[0].checked === true) {
-      balance = radio[i].ariaValueMax;
+    if (radio[i].checked === true) {
+      balance = radio[i].value;
       break;
     }
   }
@@ -50,7 +50,9 @@ function regist() {
   let category = document.getElementById("category").value;
 
   // ラジオボタンが収入を選択している場合、カテゴリを「収入」とする
-  if (balance === "収入") {}
+  if (balance === "収入") {
+    category = '収入';
+  }
 
   // データベースにデータを登録
   insertData(balance, date, category, amount, memo);
