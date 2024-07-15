@@ -1,5 +1,4 @@
-$(function(){
-
+$(function() {
   // jQueryオブジェクトを変数に代入
   const $yomi = $('#yomi');
   const $mondai = $('#mondai');
@@ -12,8 +11,6 @@ $(function(){
 
   // 問題用の変数の初期化
   let char_index = 1;
-
-  // 最初の問題
   let max_length = 3;
   let question_number = 1;
   let question_limit = 3;
@@ -26,23 +23,23 @@ $(function(){
 
   // 問題
   const MONDAI_LIST = [
-    { yomi: 'ごはん', text: 'gohan' },
-    { yomi: 'おすし', text: 'osushi' },
-    { yomi: 'サイフ', text: 'saifu' },
-    { yomi: 'バナナ', text: 'banana' },
-    { yomi: 'くつした', text: 'kutsushita' },
-    { yomi:'なべ', text:'nabe' },
-    { yomi:'あし', text:'ashi' },
-    { yomi:'パソコン', text:'pasokon' },
-    { yomi:'けいたい', text:'keitai' },
-    { yomi:'ふとん', text:'futon' },
+    {yomi:'ごはん', text:'gohan'},
+    {yomi:'おすし', text:'osushi'},
+    {yomi:'サイフ', text:'saifu'},
+    {yomi:'バナナ', text:'banana'},
+    {yomi:'くつした', text:'kutsushita'},
+    {yomi:'なべ', text:'nabe'},
+    {yomi:'あし', text:'ashi'},
+    {yomi:'パソコン', text:'pasokon'},
+    {yomi:'けいたい', text:'keitai'},
+    {yomi:'ふとん', text:'futon'},
   ];
 
   $yomi.hide();
   $mondai.hide();
   changeQuestionWord(getQuestionNumber());
 
-  $countSelect.on('change', function(){
+  $countSelect.on('change', function() {
     question_limit = Number($countSelect.val());
     done_questions = {};
     changeQuestionWord(getQuestionNumber());
@@ -69,10 +66,7 @@ $(function(){
 
     const $target = $('#char-'+char_index);
     const char = $target.text();
-
-    // 入力文字と現在の位置の文字が一緒だったら
     if (e.key === char) {
-      // alert('正解');
       $target.removeClass('default');
       $target.addClass('correct');
       char_index++;
@@ -82,16 +76,13 @@ $(function(){
     }
 
     if (max_length < char_index) {
-      changeQuestionWord();
-      char_index = 1;
-      // 次の問題を用意
       question_number++;
       if (question_limit < question_number) {
         finish();
         return;
       }
       changeQuestionWord(getQuestionNumber());
-      char_index = 1; // 初期化
+      char_index = 1;
     }
   });
 
@@ -136,7 +127,6 @@ $(function(){
     $timeMessage.text('かかった時間：'+typing_time+'秒');
   }
 
-  // 次の問題の実装
   function changeQuestionWord(index) {
     const word = MONDAI_LIST[index]['text'];
     max_length = word.length;
@@ -144,7 +134,6 @@ $(function(){
     for (let i = 0; i < max_length; i++) {
       newHtml += '<p id="char-'+(i+1)+'" class="text default">'+word[i]+'</p>';
     }
-    // console.log('newHtml: ' + newHtml);
     $mondai.html(newHtml);
     $yomi.text(MONDAI_LIST[index]['yomi']);
   }
